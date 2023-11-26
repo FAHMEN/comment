@@ -5,7 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guestbook</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Verdana', 'Tahoma', 'Arial', 'Helvetica', sans-serif;
+            background-color: #224220;
+            color: #224220;
+            margin: 0;
+        }
+
+        #guestbook-container {
+            width: 95%;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ABBBA0;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        #messages-container {
+            background-color: #E7EFE0;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        a {
+            color: #660000;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
@@ -20,7 +52,54 @@
             <p><b><a href="https://www.youtube.com/@fazgam5732">©fahril!</a></b></p>
         </div>
     </center>
-    <script src="script.js"></script>
+    <script>
+        // Replace this part with your actual messages data
+        const messagesData = [
+            {
+                date: '11/26/2023, 8:08 AM',
+                name: 'fahril ahmad',
+                email: 'anonymousteam91@gmail.com',
+                website: 'https://relaxmusic.rf.gd/',
+                message: 'Selamat datang di guestbook kami! Ini adalah pesan pertama. Kami sangat senang Anda berada di sini. Jangan ragu untuk meninggalkan jejak Anda. Tulislah pesan atau pengalaman yang ingin Anda bagikan. Terima kasih atas kunjungan Anda!'
+            }
+            // Add more messages as needed
+        ];
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const messagesContainer = document.getElementById('messages-container');
+
+            // Function to render messages
+            function renderMessages() {
+                messagesContainer.innerHTML = ''; // Clear previous messages
+
+                messagesData.forEach(message => {
+                    const messageElement = document.createElement('div');
+                    messageElement.innerHTML = `
+                        <div>
+                            <b>Date:</b> ${message.date}
+                        </div>
+                        <div>
+                            <b>Name:</b> ${message.name}
+                        </div>
+                        <div>
+                            <b>Email:</b> <a href="mailto:${message.email}">${message.email}</a>
+                        </div>
+                        <div>
+                            <b>Web:</b> <a href="${message.website}" target="_blank" rel="nofollow">${message.website}</a>
+                        </div>
+                        <div>
+                            <b>Message:</b>
+                            <p>${message.message}</p>
+                        </div>
+                        <hr>
+                    `;
+                    messagesContainer.appendChild(messageElement);
+                });
+            }
+
+            renderMessages(); // Initial render
+        });
+    </script>
 </body>
 
 </html>
